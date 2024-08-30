@@ -24,7 +24,10 @@ class DateView: ObservableObject {
     private func updateToNextDate() {
         // 現在のカレンダーを使用して、次の00:00を計算
         let calendar = Calendar.current
-        if let nextMidnight = calendar.nextDate(after: currentDate, matching: DateComponents(hour: 0, minute: 0, second: 0), matchingPolicy: .nextTime) {
+        if let nextMidnight = calendar.nextDate(
+            after: currentDate, matching: DateComponents(hour: 0, minute: 0, second: 0),
+            matchingPolicy: .nextTime)
+        {
             // 次の00:00に達するまでの秒数を計算
             let interval = nextMidnight.timeIntervalSinceNow
             // 計算した秒数後に一度だけトリガーされるタイマーを設定
@@ -53,7 +56,7 @@ class DateView: ObservableObject {
 //home画面デザイン
 struct Home: View {
     //アクセントカラー設定
-    @State private var accentColor = Color(red:0/255 , green: 130/255, blue:153/255)
+    @State private var accentColor = Color(red: 0 / 255, green: 130 / 255, blue: 153 / 255)
     // DateViewをStateObjectとして使用
     @StateObject private var viewModel = DateView()
     //キャラクター 初期位置は0
@@ -68,17 +71,17 @@ struct Home: View {
     @State private var isPresented: Bool = false
     
     var body: some View {
-        NavigationStack{
-            ZStack{
+        NavigationStack {
+            ZStack {
                 //背景色設定
                 Image("background")
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
                 
-                VStack{
+                VStack {
                     Spacer().frame(height: 70)
-                    VStack(spacing: 0){
+                    VStack(spacing: 0) {
                         HStack(spacing: 0) {  // 水平方向に要素を並べるHStack
                             // 現在の日付を文字列にして、それぞれの文字を対応するビューに変換
                             ForEach(viewModel.getDateDigits(), id: \.self) { character in
@@ -97,21 +100,21 @@ struct Home: View {
                             }
                         }
                         //ドリンク画面
-                        HStack(alignment: .bottom){
+                        HStack(alignment: .bottom) {
                             
                             Image("cola")
-                            VStack{
+                            VStack {
                                 Spacer().frame(height: 5)
-                                triangleView(accentColor: accentColor , rotation: 90)
+                                triangleView(accentColor: accentColor, rotation: 90)
                                 Spacer().frame(height: 50)
                             }
                             Image("soda")
                                 .resizable()
-                                .frame(width:80 , height: 130)
+                                .frame(width: 80, height: 130)
                             
-                            VStack{
+                            VStack {
                                 Spacer().frame(height: 5)
-                                triangleView(accentColor: accentColor , rotation: 90)
+                                triangleView(accentColor: accentColor, rotation: 90)
                                 Spacer().frame(height: 50)
                             }
                             Spacer().frame(width: 70)
@@ -121,52 +124,38 @@ struct Home: View {
                     Spacer().frame(height: 80)
                     
                     //キャラクター
-                    Image("character")
-                        .resizable()
-                        .frame(width:270 , height: 200)
-                        .offset(y: offsetY)  // y軸のオフセットを適用
-                        .onReceive(timer) { _ in
-                            // タイマーが発火するたびにアニメーションをトリガー
-                            withAnimation(.easeInOut(duration: 2)) {  // アニメーションの持続時間を設定
-                                if movingDown {
-                                    offsetY = 5
-                                } else {
-                                    offsetY = -20
-                                }
-                                movingDown.toggle()  // 次のアニメーションで逆方向に移動するように切り替える
-                            }
-                        }
+                    CharacterView()
                     
                     Spacer().frame(height: 80)
                     
                     //メニューバー設定
                     
-                    ZStack{
+                    ZStack {
                         Image("menuber")
-                        HStack{
-                            Button{
+                        HStack {
+                            Button {
                                 print("profileが押されたよ")
-                                isPresented = true //trueにしないと画面遷移されない
-                            }label:{
+                                isPresented = true  //trueにしないと画面遷移されない
+                            } label: {
                                 Image("profile")
                             }.fullScreenCover(isPresented: $isPresented) {
-//                               Profile()//フルスクリーンの画面遷移
+                                //                               Profile()//フルスクリーンの画面遷移
                             }
                             
-                            Button{
+                            Button {
                                 print("listが押されたよ")
                                 isPresented = true
-                            }label:{
+                            } label: {
                                 Image("list")
-                                    .padding(.horizontal , 30)
+                                    .padding(.horizontal, 30)
                             }.fullScreenCover(isPresented: $isPresented) {
-//                                List()
+                                //                                List()
                             }
                             
-                            Button{
+                            Button {
                                 print("inputが押されたよ")
                                 isPresented = true
-                            }label:{
+                            } label: {
                                 Image("input")
                             }.fullScreenCover(isPresented: $isPresented) {
                                 Input()
@@ -194,12 +183,12 @@ struct Home: View {
         }
     }
     
-    func triangleView(accentColor : Color , rotation: Double) -> some View {
+    func triangleView(accentColor: Color, rotation: Double) -> some View {
         Triangle()
             .fill(accentColor)
-            .frame(width:10 , height:10)
+            .frame(width: 10, height: 10)
             .rotationEffect(.degrees(rotation))
-            .padding(.top , 10)
+            .padding(.top, 10)
     }
 }
 
