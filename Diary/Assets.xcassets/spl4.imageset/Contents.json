@@ -1,16 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "soda.svg",
-      "idiom" : "iphone",
+      "filename" : "spl4.png",
+      "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "idiom" : "iphone",
+      "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
+      "idiom" : "universal",
       "scale" : "3x"
     }
   ],
