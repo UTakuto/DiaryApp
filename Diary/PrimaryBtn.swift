@@ -31,5 +31,5 @@ struct PrimaryBtn: View {
 }
 
 #Preview {
-  PrimaryBtn(imageName: "Filters")
+  PrimaryBtn(imageName: "1")
 }
