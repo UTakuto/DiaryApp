@@ -12,8 +12,8 @@
 		1516FF002C7EF9860089B15B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1516FEFF2C7EF9860089B15B /* Assets.xcassets */; };
 		1516FF032C7EF9860089B15B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1516FF022C7EF9860089B15B /* Preview Assets.xcassets */; };
 		15F42A122C81B0B7000D9ACA /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F42A112C81B0B7000D9ACA /* Input.swift */; };
-		D6D3B09A2C824A0C00087AA6 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D3B0992C824A0C00087AA6 /* SplashScreen.swift */; };
-		D6D3B09E2C826F1400087AA6 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D3B09D2C826F1300087AA6 /* CharacterView.swift */; };
+		D6D3B0A52C82873300087AA6 /* HexagonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D3B0A32C82873300087AA6 /* HexagonShape.swift */; };
+		D6D3B0A62C82873300087AA6 /* PrimaryBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D3B0A42C82873300087AA6 /* PrimaryBtn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,8 +23,8 @@
 		1516FEFF2C7EF9860089B15B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1516FF022C7EF9860089B15B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		15F42A112C81B0B7000D9ACA /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
-		D6D3B0992C824A0C00087AA6 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
-		D6D3B09D2C826F1300087AA6 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		D6D3B0A32C82873300087AA6 /* HexagonShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HexagonShape.swift; path = "../../あああ/HexagonShape.swift"; sourceTree = "<group>"; };
+		D6D3B0A42C82873300087AA6 /* PrimaryBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrimaryBtn.swift; path = "../../あああ/PrimaryBtn.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +58,9 @@
 			isa = PBXGroup;
 			children = (
 				1516FEFB2C7EF9840089B15B /* DiaryApp.swift */,
-				1516FEFD2C7EF9840089B15B /* Home.swift */,
-				D6D3B09D2C826F1300087AA6 /* CharacterView.swift */,
-				D6D3B0992C824A0C00087AA6 /* SplashScreen.swift */,
+				D6D3B0A32C82873300087AA6 /* HexagonShape.swift */,
+				D6D3B0A42C82873300087AA6 /* PrimaryBtn.swift */,
+				1516FEFD2C7EF9840089B15B /* home.swift */,
 				15F42A112C81B0B7000D9ACA /* Input.swift */,
 				1516FEFF2C7EF9860089B15B /* Assets.xcassets */,
 				1516FF012C7EF9860089B15B /* Preview Content */,
@@ -146,7 +146,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6D3B09A2C824A0C00087AA6 /* SplashScreen.swift in Sources */,
+				D6D3B0A52C82873300087AA6 /* HexagonShape.swift in Sources */,
+				D6D3B0A62C82873300087AA6 /* PrimaryBtn.swift in Sources */,
 				15F42A122C81B0B7000D9ACA /* Input.swift in Sources */,
 				D6D3B09E2C826F1400087AA6 /* CharacterView.swift in Sources */,
 				1516FEFE2C7EF9840089B15B /* Home.swift in Sources */,
