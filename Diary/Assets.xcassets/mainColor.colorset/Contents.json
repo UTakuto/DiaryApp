@@ -8,6 +8,9 @@
           "blue" : "153",
           "green" : "130",
           "red" : "0"
+          "blue" : "0x99",
+          "green" : "0x82",
+          "red" : "0x00"
         }
       },
       "idiom" : "universal"
@@ -26,6 +29,9 @@
           "blue" : "255",
           "green" : "255",
           "red" : "255"
+          "blue" : "1.000",
+          "green" : "1.000",
+          "red" : "1.000"
         }
       },
       "idiom" : "universal"
