@@ -51,7 +51,7 @@ class DateView: ObservableObject {
 }
 
 //home画面デザイン
-struct home: View {
+struct Home: View {
     //アクセントカラー設定
     @State private var accentColor = Color(red:0/255 , green: 130/255, blue:153/255)
     // DateViewをStateObjectとして使用
@@ -204,5 +204,5 @@ struct home: View {
 }
 
 #Preview {
-    home()
+    Home()
 }
