@@ -41,7 +41,8 @@ struct pastDiary: View {
     let diaryDay = ["2024.08.26","2024.08.25","2024.08.24","2024.08.23"]
     let Landscape = ["Landscape1","","Landscape1",""]
     
-    @State private var isFocused: Bool = false
+    @FocusState private var isFocused: Bool
+    @State private var searchFieldWidth: CGFloat = 274
     
     var body: some View {
         ZStack {
@@ -63,26 +64,32 @@ struct pastDiary: View {
                             }
                             Spacer()
                         }
-                        .frame(width: 274, height: 40)
+                        .frame(width: searchFieldWidth, height: 40)
                         .background(.white)
-                        .clipShape( RoundedRectangle( cornerRadius:8 ) )
+                        .clipShape( RoundedRectangle( cornerRadius:8))
+                        .onTapGesture {
+                            withAnimation(.easeInOut(duration: 1)) {
+                                searchFieldWidth = 274
+                            }
+                        }
                     }
                     ZStack {
                         ZStack {
-                                HexagonShape()
-                                    .stroke(Color("mainColor"), lineWidth: 0.5)
-                                    .frame(width: 50, height: 44)
-                                
-                                HexagonShape()
-                                    .fill(Color.white)
-                                    .overlay(
-                                        HexagonShape()
-                                            .stroke(Color("mainColor"), lineWidth: 2.5)
-                                    )
-                                    .frame(width: 42, height: 36)
+                            if isFocused {
+                                // フォーカスされたときの表示
+                                Image("Hexagon2")
+                            } else {
+                                Image("Hexagon")
+                            }
                         }
-                        
-                        Image("Filters")
+                        .focusable() // フォーカス可能にする
+                        .focused($isFocused) // フォーカス状態をバインド
+                        .onTapGesture {
+                            withAnimation(.easeInOut(duration: 1)) {
+                                isFocused.toggle()
+                                searchFieldWidth = isFocused ? 274 : 140
+                            }
+                        }
                     }
                 }
                 .padding(.top, 32)
