@@ -64,110 +64,119 @@ struct home: View {
     let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
     
     @State var path = [String]()
-   
-    struct AnimationValues {
-        var scale: CGFloat
-    }
+    //画面遷移の時に使用するbool値
+    @State private var isPresented: Bool = false
     
     var body: some View {
-        ZStack{
-            //背景色設定
-            Image("background")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-            
-            VStack{
-                Spacer().frame(height: 70)
-                VStack(spacing: 0){
-                    HStack(spacing: 0) {  // 水平方向に要素を並べるHStack
-                        // 現在の日付を文字列にして、それぞれの文字を対応するビューに変換
-                        ForEach(viewModel.getDateDigits(), id: \.self) { character in
-                            if let _ = Int(character) {
-                                // 数字である場合、その数字に対応する画像を表示
-                                Image(character)  // アセットに数字の画像 (0.svg〜9.svg) を配置していることが前提
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 30, height: 30)  // 画像のサイズを調整
-                            } else {
-                                // 数字でない文字（例: ピリオド ".")の場合、テキストで表示
-                                Text(character)
-                                    .font(.system(size: 35, weight: .light))  // フォントサイズとスタイルの設定
-                                    .foregroundColor(accentColor)  // 文字色の設定
-                            }
-                        }
-                    }
-                    //ドリンク画面
-                    HStack(alignment: .bottom){
-                        
-                        Image("cola")
-                        VStack{
-                            Spacer().frame(height: 5)
-                            triangleView(accentColor: accentColor , rotation: 90)
-                            Spacer().frame(height: 50)
-                        }
-                        Image("soda")
-                            .resizable()
-                            .frame(width:100 , height: 150)
-                        
-                        VStack{
-                            Spacer().frame(height: 5)
-                            triangleView(accentColor: accentColor , rotation: 90)
-                            Spacer().frame(height: 50)
-                        }
-                        Spacer().frame(width: 70)
-                    }
-                }
-                
-                Spacer().frame(height: 50)
-                
-                //キャラクター
-                Image("character")
+        NavigationStack{
+            ZStack{
+                //背景色設定
+                Image("background")
                     .resizable()
-                    .frame(width:320 , height: 250)
-                    .offset(y: offsetY)  // y軸のオフセットを適用
-                    .onReceive(timer) { _ in
-                        // タイマーが発火するたびにアニメーションをトリガー
-                        withAnimation(.easeInOut(duration: 2)) {  // アニメーションの持続時間を設定
-                            if movingDown {
-                                offsetY = 5
-                            } else {
-                                offsetY = -20
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                
+                VStack{
+                    Spacer().frame(height: 70)
+                    VStack(spacing: 0){
+                        HStack(spacing: 0) {  // 水平方向に要素を並べるHStack
+                            // 現在の日付を文字列にして、それぞれの文字を対応するビューに変換
+                            ForEach(viewModel.getDateDigits(), id: \.self) { character in
+                                if let _ = Int(character) {
+                                    // 数字である場合、その数字に対応する画像を表示
+                                    Image(character)  // アセットに数字の画像 (0.svg〜9.svg) を配置していることが前提
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 25, height: 25)  // 画像のサイズを調整
+                                } else {
+                                    // 数字でない文字（例: ピリオド ".")の場合、テキストで表示
+                                    Text(character)
+                                        .font(.system(size: 30, weight: .light))  // フォントサイズとスタイルの設定
+                                        .foregroundColor(accentColor)  // 文字色の設定
+                                }
                             }
-                            movingDown.toggle()  // 次のアニメーションで逆方向に移動するように切り替える
+                        }
+                        //ドリンク画面
+                        HStack(alignment: .bottom){
+                            
+                            Image("cola")
+                            VStack{
+                                Spacer().frame(height: 5)
+                                triangleView(accentColor: accentColor , rotation: 90)
+                                Spacer().frame(height: 50)
+                            }
+                            Image("soda")
+                                .resizable()
+                                .frame(width:80 , height: 130)
+                            
+                            VStack{
+                                Spacer().frame(height: 5)
+                                triangleView(accentColor: accentColor , rotation: 90)
+                                Spacer().frame(height: 50)
+                            }
+                            Spacer().frame(width: 70)
                         }
                     }
                     
-                Spacer().frame(height: 50)
-                
-                //メニューバー設定
-              
+                    Spacer().frame(height: 80)
+                    
+                    //キャラクター
+                    Image("character")
+                        .resizable()
+                        .frame(width:270 , height: 200)
+                        .offset(y: offsetY)  // y軸のオフセットを適用
+                        .onReceive(timer) { _ in
+                            // タイマーが発火するたびにアニメーションをトリガー
+                            withAnimation(.easeInOut(duration: 2)) {  // アニメーションの持続時間を設定
+                                if movingDown {
+                                    offsetY = 5
+                                } else {
+                                    offsetY = -20
+                                }
+                                movingDown.toggle()  // 次のアニメーションで逆方向に移動するように切り替える
+                            }
+                        }
+                    
+                    Spacer().frame(height: 80)
+                    
+                    //メニューバー設定
+                    
                     ZStack{
                         Image("menuber")
                         HStack{
                             Button{
                                 print("profileが押されたよ")
+                                isPresented = true //trueにしないと画面遷移されない
                             }label:{
                                 Image("profile")
+                            }.fullScreenCover(isPresented: $isPresented) {
+//                               Profile()//フルスクリーンの画面遷移
                             }
                             
                             Button{
-                               print("listが押されたよ")
+                                print("listが押されたよ")
+                                isPresented = true
                             }label:{
                                 Image("list")
                                     .padding(.horizontal , 30)
+                            }.fullScreenCover(isPresented: $isPresented) {
+//                                List()
                             }
                             
                             Button{
                                 print("inputが押されたよ")
+                                isPresented = true
                             }label:{
                                 Image("input")
+                            }.fullScreenCover(isPresented: $isPresented) {
+                                Input()
                             }
-                           
+                            
                         }
                     }
-                
-                Spacer()
+                    
+                    Spacer()
+                }
             }
         }
         
