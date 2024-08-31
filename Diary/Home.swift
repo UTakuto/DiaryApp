@@ -12,7 +12,7 @@ struct Home: View {
     @State private var movingDown = true
     // タイマーを使ってアニメーションを制御 （2秒ごとにトリガーされる）
     let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
-    
+
     @State var path = [String]()
     // 画面遷移の時に使用するbool値
     @State private var isPresented: Bool = false
