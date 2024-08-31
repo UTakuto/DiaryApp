@@ -16,6 +16,8 @@ struct Home: View {
     @State var path = [String]()
     // 画面遷移の時に使用するbool値
     @State private var isPresented: Bool = false
+    // 選択されたタブのインデックス
+    @State private var selectedTab = 1
     
     var body: some View {
         NavigationStack {
@@ -28,12 +30,13 @@ struct Home: View {
                 
                 VStack {
                     Spacer().frame(height: 70)
-                    TabView {
-                        // First screen - 1日前の日付を表示
+                    
+                    TabView(selection: $selectedTab) {
+                        // First screen - 1日前の日付を表示（左側）
                         SlideView(imageName: "cola2", dateDigits: viewModel.getPreviousDateDigits())
                             .tag(0)
                         
-                        // Second screen - 現在の日付を表示
+                        // Second screen - 現在の日付を表示（右側）
                         SlideView(imageName: "soda5", dateDigits: viewModel.getDateDigits())
                             .tag(1)
                     }
