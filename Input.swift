@@ -91,10 +91,10 @@ struct Input: View {
                         .transition(.opacity)
                 }
             }
-            .navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true) //現在の画面のBackボタンを非表示
             .animation(.easeInOut(duration: 1), value: showWhiteScreen)
             .navigationDestination(isPresented: $showNextScreen) {
-                CompleteView()
+                CompleteView() // 次の画面に遷移
             }
         }
     }
